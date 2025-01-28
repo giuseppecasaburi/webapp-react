@@ -5,11 +5,11 @@
  - Ripuliamo come sempre l’app da file e codice di esempio non necessari ✅
  - Installiamo il necessario: React Router, Axios e Bootstrap (se volete utilizzarlo) ✅
  
- ## MILESTONE 2
- - Creiamo un layout di base per la nostra applicazione ed impostiamo le rotte per le diverse pagine.
+ ## MILESTONE 2 ✅
+ - Creiamo un layout di base per la nostra applicazione ed impostiamo le rotte per le diverse pagine. ✅
  - Creiamo 2 pagine:
-     - La home
-     - la pagina in cui mostreremo la lista dei film
+     - La home ✅
+     - la pagina in cui mostreremo la lista dei film ✅
  
  ## MILESTONE 3
  - Configuriamo l’app di backend (repo `webapp-express`) a ricevere chiamate dalla nostra applicazione React, installando e impostando il middleware **CORS**
