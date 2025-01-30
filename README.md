@@ -11,9 +11,9 @@
      - La home ✅
      - la pagina in cui mostreremo la lista dei film ✅
  
- ## MILESTONE 3
- - Configuriamo l’app di backend (repo `webapp-express`) a ricevere chiamate dalla nostra applicazione React, installando e impostando il middleware **CORS**
- - Proviamo quindi ad effettuare una chiamata Ajax dalla home del progetto React, per ottenere la lista dei film
+ ## MILESTONE 3 ✅
+ - Configuriamo l’app di backend (repo `webapp-express`) a ricevere chiamate dalla nostra applicazione React, installando e impostando il middleware **CORS**; ✅
+ - Proviamo quindi ad effettuare una chiamata Ajax dalla home del progetto React, per ottenere la lista dei film ✅
  
  ### Bonus
  - Impostare la struttura del lavoro in maniera da sfruttare la riutailizzabilità dei componenti React e le loro props!
