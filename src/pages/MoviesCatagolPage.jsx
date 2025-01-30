@@ -14,6 +14,7 @@ function MoviesCatagolPage() {
     }, [])
 
     console.log(movies)
+    console.log()
     return (
         <>
             <div className="container mt-4">
@@ -25,7 +26,7 @@ function MoviesCatagolPage() {
                 {movies.map((curMovie) => (
                     <div className="col-md-4" key={curMovie.id}>
                         <div className="card h-100">
-                            <img src={curMovie.image || "placeholder.jpg"} className="card-img-top" alt="..." />
+                            <img src={`http://localhost:3000/movies_cover/${curMovie.image}` || "placeholder.jpg"} className="card-img-top" alt="..." />
                             <div className="card-body">
                                 <h5 className="card-title">{curMovie.title}</h5>
                                 <p className="card-text">{curMovie.abstract}</p>
