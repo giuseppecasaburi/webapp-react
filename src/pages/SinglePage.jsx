@@ -4,13 +4,13 @@ import { useParams } from "react-router-dom";
 
 function SinglePage() {
     const [movies, setMovies] = useState([]);
-    const { id } = useParams()
+    const { slug } = useParams()
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/app/${id}`).then((resp) => {
+        axios.get(`http://localhost:3000/app/${slug}`).then((resp) => {
             setMovies(resp.data.data)
         });
-    }, [id])
+    }, [slug])
 
     const movie = movies[0];
     const reviews = movies.reviews;

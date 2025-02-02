@@ -10,10 +10,6 @@ function AppHeader() {
         {
             path: "/movies",
             title: "Catalogo dei film"
-        },
-        {
-            path: "/detail-page",
-            title: "Dettagli singolo film"
         }
     ]
 

@@ -4,27 +4,43 @@ import SinglePage from "./SinglePage";
 import { Link } from "react-router-dom";
 
 function MoviesCatagolPage() {
+    const genres = ["Science Fiction", "Crime", "Romance", "Action"]
 
     // STATO PER I FILM
     const [movies, setMovies] = useState([]);
+    const [search, setSearch] = useState("");
+    const [selectedGenre, setSelectedGenre] = useState("");
 
-    useEffect(() => {
-        axios.get("http://localhost:3000/app").then((resp) => {
+    const getMovies = () => {
+        const params = {};
+
+        if (search.length > 0) {
+            params.search = search;
+        }
+
+        if (selectedGenre !== "") {
+            params.genre = genres[selectedGenre]
+        }
+
+        axios.get("http://localhost:3000/app", { params }).then((resp) => {
             setMovies(resp.data.data);
         })
-    }, [])
+    }
 
-    console.log(movies)
-    console.log()
+    useEffect(() => {
+        getMovies()
+    }, [selectedGenre])
+
+
     return (
         <>
-            <div className="container mt-4">
-            <form className="d-flex my-3" role="search">
-                <input className="p-2 me-2 rounded-4" type="search" placeholder="Search" aria-label="Search" />
-                <button className="btn btn-outline-success rounded-4" type="submit">Search</button>
-            </form>
-
-            </div>
+            <section>
+                <h2>Elenco di libri</h2>
+                <div className="my-4 d-flex">
+                    <input type="search" aria-label="Cerca libri per parola chiave" className="form-control" placeholder="Cerca libro" value={search} onChange={(event) => setSearch(event.target.value)} />
+                    <button className="btn btn-primary ms-2" onClick={getMovies}>Cerca</button>
+                </div>
+            </section>
 
             <div className="row g-4">
                 {movies.map((curMovie) => (
@@ -41,7 +57,7 @@ function MoviesCatagolPage() {
                                 <br />
                                 <span>Release year: {curMovie.release_year}</span>
                                 <br />
-                                <Link className="btn btn-primary my-2" to={`/detail-page/${curMovie.id}`}>Dettagli del film</Link>                            
+                                <Link className="btn btn-primary my-2" to={`/detail-page/${curMovie.slug}`}>Dettagli del film</Link>
                             </div>
                         </div>
                     </div>

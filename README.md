@@ -23,12 +23,12 @@
 
 
 
- **Traccia secondo giorno**
+ **Traccia secondo giorno** 
  ## MILESTONE 4 ✅
  - In ultimo, effettuiamo una chiamata AJAX dalla pagina di dettaglio per ottenere il dettaglio di un singolo film, comprese le sue recensioni. ✅
  
  ### Bonus
- - usare lo slug al posto di id per richiedere i dettagli di un libro.
+ - usare lo slug al posto di id per richiedere i dettagli di un libro. ✅
 
 
 
