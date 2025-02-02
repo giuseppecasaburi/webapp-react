@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import SinglePage from "./SinglePage";
+import { Link } from "react-router-dom";
 
 function MoviesCatagolPage() {
 
@@ -9,7 +11,6 @@ function MoviesCatagolPage() {
     useEffect(() => {
         axios.get("http://localhost:3000/app").then((resp) => {
             setMovies(resp.data.data);
-
         })
     }, [])
 
@@ -18,7 +19,10 @@ function MoviesCatagolPage() {
     return (
         <>
             <div className="container mt-4">
-                <h1>Io sono catalogo dei film</h1>
+            <form className="d-flex my-3" role="search">
+                <input className="p-2 me-2 rounded-4" type="search" placeholder="Search" aria-label="Search" />
+                <button className="btn btn-outline-success rounded-4" type="submit">Search</button>
+            </form>
 
             </div>
 
@@ -36,6 +40,8 @@ function MoviesCatagolPage() {
                                 <span>Genre: {curMovie.genre}</span>
                                 <br />
                                 <span>Release year: {curMovie.release_year}</span>
+                                <br />
+                                <Link className="btn btn-primary my-2" to={`/detail-page/${curMovie.id}`}>Dettagli del film</Link>                            
                             </div>
                         </div>
                     </div>
