@@ -17,10 +17,14 @@ function SinglePage() {
     // STATO DEI CAMPI DEL FORM
     const [formData, setFormData] = useState(initialValues)
 
-    useEffect(() => {
+    const getMovie = () => {
         axios.get(`http://localhost:3000/app/${slug}`).then((resp) => {
             setMovies(resp.data.data)
         });
+    }
+
+    useEffect(() => {
+        getMovie()
     }, [slug])
 
     const movie = movies[0];
@@ -35,7 +39,7 @@ function SinglePage() {
     // FUNZIONE CHE INVIA I DATI DEL FORM AL SERVER AL CLICK SUL SUBMIT
     const storeReview = (formData) => {
         // USESTATE PER TENERE AGGIORANTI TUTTI I VALORI DEL FORM
-        console.log("Submit review", book.id, formData);
+        console.log("Submit review", movie.id, formData);
 
         // CHIAMATA AXIOS
         axios.post(`http://localhost:3000/app/${movie.id}/reviews`, formData).then((resp) => {
@@ -45,7 +49,7 @@ function SinglePage() {
             // RESETTO I CAMPI DEL FORM
             setFormData(initialValues);
             // AGGIORNO LA PAGINA FACENDO RIPARTIRE LA CHIAMATA CHE PRELEVA I DATI CON LA NUOVA RECENSIONE
-            getBook();
+            getMovie();
         });
     };
 
