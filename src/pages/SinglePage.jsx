@@ -1,10 +1,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ReviewForm from "../components/ReviewForm";
+
+// STATO INIZIALE DEL FORM NON COMPILATO
+const initialValues = {
+    name: "",
+    text: "",
+    vote: 0
+};
 
 function SinglePage() {
     const [movies, setMovies] = useState([]);
     const { slug } = useParams()
+
+    // STATO DEI CAMPI DEL FORM
+    const [formData, setFormData] = useState(initialValues)
 
     useEffect(() => {
         axios.get(`http://localhost:3000/app/${slug}`).then((resp) => {
@@ -20,6 +31,23 @@ function SinglePage() {
     if (!movie) {
         return <p>Caricamento...</p>;  // O un messaggio di errore o caricamento
     }
+
+    // FUNZIONE CHE INVIA I DATI DEL FORM AL SERVER AL CLICK SUL SUBMIT
+    const storeReview = (formData) => {
+        // USESTATE PER TENERE AGGIORANTI TUTTI I VALORI DEL FORM
+        console.log("Submit review", book.id, formData);
+
+        // CHIAMATA AXIOS
+        axios.post(`http://localhost:3000/app/${movie.id}/reviews`, formData).then((resp) => {
+            console.log(resp);
+
+            // SE IL SALVATAGGIO DELLA REVIEW E' ANDATO BENE RICHIEDIAMO I DATI AGGIORNATI DEL LIBRO DAL SERVER E AGGIORNIAMO I CAMPI DEL FORM
+            // RESETTO I CAMPI DEL FORM
+            setFormData(initialValues);
+            // AGGIORNO LA PAGINA FACENDO RIPARTIRE LA CHIAMATA CHE PRELEVA I DATI CON LA NUOVA RECENSIONE
+            getBook();
+        });
+    };
 
     return (
         <>
@@ -62,6 +90,14 @@ function SinglePage() {
                         </div>
                         ))}
                     </div>
+                    <section>
+                        <div className="row justify-content-center">
+                            <div className="col-8">
+                                <h2 className="text-center mt-5 mb-3">Invia una recensione</h2>
+                                <ReviewForm setFormData={setFormData} formData={formData} onSubmitFunction={storeReview} />
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </section>
         </>
